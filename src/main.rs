@@ -1,5 +1,5 @@
-use clap::Parser;
 /// inspired by https://github.com/lakhanmankani/wifi_qrcode_generator/tree/main
+use clap::Parser;
 use wifi_qr_rs::cli::Cli;
 use wifi_qr_rs::qr;
 
