@@ -8,7 +8,6 @@ use qrcode::QrCode;
 use crate::models::AuthType;
 
 /// Generate a WiFi code for the given parameters.
-/// The generated WiFi code can be rendered into a QR code to be scanned to join the network.
 ///
 /// # Arguments
 /// * `ssid`: Network SSID.
@@ -43,8 +42,8 @@ pub fn wifi_code(
     ))
 }
 
-/// Generate a WiFi code for the given parameters.
-/// The generated WiFi code can be rendered into a QR code to be scanned to join the network.
+/// Generate a WiFi code for the given parameters and make it into a QR code image
+/// The resultant QR code can be scanned to join the network.
 ///
 /// # Arguments:
 /// * `ssid`: Network SSID.
@@ -52,9 +51,6 @@ pub fn wifi_code(
 /// * `authentication_type`: Specify the authentication type. Supported types: [AuthType]
 /// * `password`: Network password. If `authetication_type` is `None`, this argument should be set to `None`.
 /// * `output_image`: the qr code image output file path
-///
-/// Returns:
-///     The WiFi code for the given parameters.
 pub fn qr(
     ssid: String,
     is_hidden: bool,
