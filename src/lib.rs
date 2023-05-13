@@ -59,6 +59,23 @@ pub fn wifi_code(
     ))
 }
 
+/// Making a QR code from a string
+/// copied from module https://docs.rs/qrcode/latest/qrcode/
+///
+/// # Arguments
+/// `string` - the string to be encoded
+/// `output_image` - path to the output QR code image
+pub fn make_qr_code_image_from_string(string: String, output_image: String) -> Result<(), String> {
+    // Encode some data into bits.
+    let code = QrCode::new(string).map_err(|e| e.to_string())?;
+    // Render the bits into an image.
+    let image = code.render::<Luma<u8>>().build();
+    // Save the image.
+    image.save(&output_image).map_err(|e| e.to_string())?;
+    info!("Writting QR code image to: {}", output_image);
+    Ok(())
+}
+
 /// Generate a WiFi code for the given parameters and make it into a QR code image
 /// The resultant QR code can be scanned to join the network.
 ///
@@ -80,14 +97,7 @@ pub fn qr(
         &ssid, &authentication_type
     );
     let wifi_string = wifi_code(ssid, is_hidden, authentication_type, password)?;
-    // copied from module https://docs.rs/qrcode/latest/qrcode/
-    // Encode some data into bits.
-    let code = QrCode::new(wifi_string).map_err(|e| e.to_string())?;
-    // Render the bits into an image.
-    let image = code.render::<Luma<u8>>().build();
-    // Save the image.
-    image.save(&output_image).map_err(|e| e.to_string())?;
-    info!("Writting QR code image to: {}", output_image);
+    make_qr_code_image_from_string(wifi_string, output_image)?;
     Ok(())
 }
 

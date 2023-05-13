@@ -1,6 +1,6 @@
 [package]
 name = "wifi-qr-rs"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "Apache-2.0"
 description = "This is a simple rust program that generates a QR code for connecting to a wifi network when scanned."
