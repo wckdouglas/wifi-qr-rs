@@ -17,6 +17,23 @@ use crate::models::AuthType;
 ///
 /// # Returns
 /// * The WiFi code for the given parameters
+///
+/// # Example
+///
+/// ```
+/// use wifi_qr_rs::wifi_code;
+/// use wifi_qr_rs::models::AuthType;
+///
+/// let ssid = String::from("my_wifi_network");
+/// let wifi_url = wifi_code(
+///     ssid,
+///     false,
+///     AuthType::WPA,
+///     Some(String::from("my_password")),
+/// );
+/// let expected_url = "WIFI:S:my_wifi_network;T:WPA;P:my_password;H:false;;".to_string();
+/// assert_eq!(wifi_url.unwrap(), expected_url);
+/// ```
 pub fn wifi_code(
     ssid: String,
     is_hidden: bool,
@@ -72,4 +89,44 @@ pub fn qr(
     image.save(&output_image).map_err(|e| e.to_string())?;
     info!("Writting QR code image to: {}", output_image);
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rstest::*;
+
+    #[rstest]
+    #[case(String::from("my_wifi_network"),false,AuthType::WPA,Some(String::from("my_password")),"WIFI:S:my_wifi_network;T:WPA;P:my_password;H:false;;".to_string())]
+    #[case(String::from("my_wifi_network"),false,AuthType::WEP,Some(String::from("my_password")),"WIFI:S:my_wifi_network;T:WEP;P:my_password;H:false;;".to_string())]
+    #[case(String::from("my_wifi_network"),true,AuthType::NOPASS,None,"WIFI:S:my_wifi_network;T:NOPASS;P:nopass;H:true;;".to_string())]
+    fn test_wifi_code(
+        #[case] ssid: String,
+        #[case] is_hidden: bool,
+        #[case] auth_type: AuthType,
+        #[case] password: Option<String>,
+        #[case] expected_url: String,
+    ) {
+        let wifi_url = wifi_code(ssid, is_hidden, auth_type, password);
+        assert_eq!(wifi_url.unwrap(), expected_url);
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_wifi_code_nopassword_but_password_provided() {
+        let _fail_result = wifi_code(
+            String::from("my_wifi_network"),
+            false,
+            AuthType::NOPASS,
+            Some(String::from("my_password")),
+        )
+        .unwrap();
+    }
+
+    #[test]
+    #[should_panic]
+    fn test_wifi_code_need_password_but_none_given() {
+        let _fail_result =
+            wifi_code(String::from("my_wifi_network"), false, AuthType::WPA, None).unwrap();
+    }
 }
