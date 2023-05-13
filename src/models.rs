@@ -5,7 +5,7 @@ use clap::ValueEnum;
 // see here: https://stackoverflow.com/questions/28024373/is-there-a-way-to-print-enum-values
 #[derive(Debug, Clone, ValueEnum)]
 pub enum AuthType {
-    WPA,
-    WEP,
-    NOPASS,
+    WPA,    // Wi-Fi Protected Access
+    WEP,    // Wired Equivalent Privacy
+    NOPASS, // no password is set
 }
