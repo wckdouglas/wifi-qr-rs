@@ -16,7 +16,7 @@ pub struct Cli {
     pub is_hidden: bool,
 
     /// authentication type
-    #[clap(short, long)]
+    #[clap(short, long, value_enum, default_value_t=AuthType::WPA)]
     pub auth_type: AuthType,
 
     /// password for the wifi
