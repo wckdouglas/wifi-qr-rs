@@ -1,5 +1,7 @@
 # wifi-qr-rs #
 
+[![CI](https://github.com/wckdouglas/wifi-qr-rs/actions/workflows/ci.yml/badge.svg)](https://github.com/wckdouglas/wifi-qr-rs/actions/workflows/ci.yml)
+
 This is a simple rust program that generates a QR code for connecting to a wifi network when scanned.
 
 The program is heavily inspired by [wifi_qrcode_generator](https://github.com/lakhanmankani/wifi_qrcode_generator).
