@@ -2,7 +2,7 @@
 name = "wifi-qr-rs"
 version = "0.1.0"
 edition = "2021"
-license = "LICENSE"
+license = "Apache-2.0"
 description = "This is a simple rust program that generates a QR code for connecting to a wifi network when scanned."
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
