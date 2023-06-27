@@ -7,7 +7,7 @@ const DEFAULT_IMAGE_PATH: &str = "wifi_qr.png";
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
 pub struct Cli {
-    /// Path to the Stats.json file
+    /// wifi network name
     #[clap(short, long)]
     pub ssid: String,
 
