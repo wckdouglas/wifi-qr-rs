@@ -13,17 +13,17 @@ $ git clone https://github.com/wckdouglas/wifi-qr-rs.git
 $ cd wifi-qr-rs
 $ cargo install --path .
 $ wifi-qr-rs -h
-Generating a QR code for connecting to a WIFI network
+This is a simple rust program that generates a QR code for connecting to a wifi network when scanned.
 
-Usage: wifi-qr-rs [OPTIONS] --ssid <SSID> --auth-type <AUTH_TYPE>
+Usage: wifi-qr-rs [OPTIONS] --ssid <SSID>
 
 Options:
-  -s, --ssid <SSID>                  Path to the Stats.json file
+  -s, --ssid <SSID>                  wifi network name
   -i, --is-hidden                    whether or not the network is hidden
-  -a, --auth-type <AUTH_TYPE>        authentication type [possible values: wpa, wep, nopass]
+  -a, --auth-type <AUTH_TYPE>        authentication type [default: wpa] [possible values: wpa, wep, nopass]
   -p, --password <PASSWORD>          password for the wifi
   -o, --output-image <OUTPUT_IMAGE>  [default: wifi_qr.png]
-  -h, --help                         Print help
+  -h, --help                         Print help (see more with '--help')
   -V, --version                      Print version
 ```
 
