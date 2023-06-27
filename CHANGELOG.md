@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.5](https://github.com/wckdouglas/wifi-qr-rs/compare/v0.1.4...v0.1.5) - 2023-06-27
+
+### Fixed
+- fix cli description
+- fix cli description
+
 ## [0.1.4](https://github.com/wckdouglas/wifi-qr-rs/compare/v0.1.3...v0.1.4) - 2023-06-27
 
 ### Other
